@@ -1,0 +1,9 @@
+nerdfont: true
+# home/tmux.nix shows the status icon in its own window format
+status_format: false
+panes:
+  - command: nvim .
+  - command: <agent>
+    split: horizontal
+    percentage: 45
+    focus: true
