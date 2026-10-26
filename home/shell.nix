@@ -66,7 +66,7 @@ in
       la = "ls -A";
       ll = "eza -l -g --icons=auto";
       lla = "ll -a";
-      wa = "workmux add -A -p";
+      wa = "workmux add -A -b -p";
       we = "workmux add -A -e";
       wo = "workmux open -c";
       wr = "workmux remove";

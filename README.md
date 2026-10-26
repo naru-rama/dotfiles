@@ -82,8 +82,8 @@ workmux add fix-auth -p "Fix the login bug"   # worktree, branch and window for 
 workmux remove fix-auth                       # after the PR is merged (`workmux merge` merges locally instead)
 ```
 
-Shell aliases: `wa "prompt"` (`workmux add -A -p`, which names the branch from the prompt),
-`we` (the same, with the prompt written in `$EDITOR`), `wo name` (`workmux open -c`, resumes the last conversation)
+Shell aliases: `wa "prompt"` (`workmux add -A -b -p`, which names the branch from the prompt and stays in the current window),
+`we` (`workmux add -A -e`, with the prompt written in `$EDITOR`), `wo name` (`workmux open -c`, resumes the last conversation)
 and `wr name` (`workmux remove`).
 
 | Key (the prefix is `Ctrl+A`) | Action |
