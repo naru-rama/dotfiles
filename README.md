@@ -72,8 +72,8 @@ If one has changed, restore it with `git -C ~/dotfiles checkout -- .` and pull a
 
 ## Parallel tasks with workmux
 
-[workmux](https://github.com/raine/workmux) gives each task its own git worktree, branch and tmux window,
-with Neovim on the left (opened on the file tree of the worktree) and Claude Code on the right (`workmux/config.yaml`).
+[workmux](https://github.com/raine/workmux) gives each task its own git worktree, branch and tmux window
+running Claude Code (`workmux/config.yaml`). To review the changes, split the window (`prefix |`) and run `nvim .`.
 
 ```sh
 cd ~/workspace/myapp
