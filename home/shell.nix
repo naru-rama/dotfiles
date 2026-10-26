@@ -66,6 +66,10 @@ in
       la = "ls -A";
       ll = "eza -l -g --icons=auto";
       lla = "ll -a";
+      wa = "workmux add -A -p";
+      we = "workmux add -A -e";
+      wo = "workmux open -c";
+      wr = "workmux remove";
     };
   };
 
