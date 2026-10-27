@@ -57,9 +57,15 @@ in
           }
         fi
       ''
-      # workmux comes from mise, so load its completions after mise has put it on PATH
+      # workmux comes from mise, so load its completions after mise has put it on PATH.
+      # Generating them takes about 15 ms, so keep them per workmux version (skipped where the cache is not writable)
       (lib.mkOrder 1500 ''
-        (( $+commands[workmux] )) && source <(workmux completions zsh)
+        if (( $+commands[workmux] )); then
+          _wm=''${XDG_CACHE_HOME:-$HOME/.cache}/zsh/workmux-''${''${commands[workmux]:A}:h:t}.zsh
+          [[ -s $_wm ]] || { mkdir -p ''${_wm:h} && workmux completions zsh >| $_wm; } 2>/dev/null || _wm=
+          [[ -n $_wm ]] && source $_wm
+          unset _wm
+        fi
       '')
     ];
 
