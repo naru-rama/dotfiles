@@ -58,6 +58,8 @@ in
       bind -r < swap-window -d -t -1
       bind -r > swap-window -d -t +1
 
+      bind t display-popup -E -d "#{pane_current_path}" -w 80% -h 70%
+
       bind L run-shell "workmux last-done"
       bind Tab run-shell "workmux last-agent"
       bind C-s display-popup -E -w 90% -h 80% "workmux dashboard"
