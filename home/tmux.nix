@@ -54,6 +54,10 @@ in
       bind k select-pane -U
       bind l select-pane -R
 
+      # Move the current window left or right in the list. Without -d, tmux keeps the old index selected
+      bind -r < swap-window -d -t -1
+      bind -r > swap-window -d -t +1
+
       bind L run-shell "workmux last-done"
       bind Tab run-shell "workmux last-agent"
       bind C-s display-popup -E -w 90% -h 80% "workmux dashboard"
