@@ -57,6 +57,10 @@ in
           }
         fi
       ''
+      # workmux comes from mise, so load its completions after mise has put it on PATH
+      (lib.mkOrder 1500 ''
+        (( $+commands[workmux] )) && source <(workmux completions zsh)
+      '')
     ];
 
     shellAliases = {
