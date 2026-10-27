@@ -5,13 +5,16 @@ let
   sepLeft = g "e0b0";
   sepRight = g "e0b2";
 
-  # The colors of the Neovim statusline (lualine with solarized-osaka); prefix turns it yellow like command mode
+  # The blocks use the colors of the Neovim statusline (lualine with solarized-osaka); prefix turns them yellow
+  # like command mode. The bar itself uses the terminal background, so it stands apart from the Neovim statusline
   aFg = "#001419";
   aBg = "#{?client_prefix,#f8ba00,#91c4ff}";
   bFg = "#001419";
   bBg = "#c6d6d7";
   cFg = "#b5cacd";
-  cBg = "#002c38";
+  cBg = "#0b1522";
+  indexFg = "#91c4ff";
+  thinSepFg = "#3b5563";
 
   branch = pkgs.writeShellScript "tmux-branch" ''
     branch=$(${pkgs.git}/bin/git -C "$1" branch --show-current 2>/dev/null)
@@ -72,9 +75,13 @@ in
       set -g status-left-length 40
       set -g status-right "#[fg=${bBg},bg=${cBg}]${sepRight}#[fg=${bFg},bg=${bBg}] #(${branch} '#{pane_current_path}')%m/%d #[fg=${aBg},bg=${bBg}]${sepRight}#[fg=${aFg},bg=${aBg}] %H:%M "
       set -g status-right-length 80
-      set -g window-status-separator ""
-      set -g window-status-format " ${window} "
+      set -g window-status-separator "#[fg=${thinSepFg}]${g "e0b1"}"
+      set -g window-status-format " #[fg=${indexFg}]#I #[fg=${cFg}]#W#{?@workmux_status, #{@workmux_status},} "
       set -g window-status-current-format "#[fg=${cBg},bg=${bBg}]${sepLeft}#[fg=${bFg}] ${window} #[fg=${bBg},bg=${cBg}]${sepLeft}"
+
+      # Names for windows that workmux does not name: Claude Code's conversation title (its process is named after
+      # its version, and the title is the host name until a conversation starts), the folder for shells, else the command
+      set -g automatic-rename-format "#{?#{||:#{m/r:^[0-9.]+$,#{pane_current_command}},#{==:#{pane_current_command},claude}},#{?#{==:#{pane_title},#{host}},claude,#{=/24/...:pane_title}},#{?#{m/r:^(zsh|bash)$,#{pane_current_command}},#{b:pane_current_path},#{pane_current_command}}}"
 
       # tmux 3.8 draws popups (such as the workmux dashboard) on grey by default
       set -g popup-style "bg=default"
