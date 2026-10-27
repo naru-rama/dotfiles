@@ -80,6 +80,25 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Ghostty: Ctrl+A（tmux の prefix）を押したら英数に切り替える",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [{ "key_code": "japanese_eisuu" }, { "key_code": "a", "modifiers": ["left_control"] }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
