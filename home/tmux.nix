@@ -14,14 +14,16 @@ let
   cFg = "#b5cacd";
   cBg = "#0b1522";
   indexFg = "#91c4ff";
-  thinSepFg = "#3b5563";
 
   branch = pkgs.writeShellScript "tmux-branch" ''
     branch=$(${pkgs.git}/bin/git -C "$1" branch --show-current 2>/dev/null)
     [ -n "$branch" ] && printf '${g "e0a0"} %s ${g "e0b3"} ' "$branch"
   '';
 
-  window = "#I #W#{?@workmux_status, #{@workmux_status},}";
+  # Each window is a rounded tag separated by a gap; the current one is only a little brighter
+  window =
+    bg: index: fg:
+    "#[fg=${bg},bg=${cBg}]${g "e0b6"}#[fg=${index},bg=${bg}]#I #[fg=${fg}]#W#{?@workmux_status, #{@workmux_status},}#[fg=${bg},bg=${cBg}]${g "e0b4"}";
 in
 {
   # Claude Code clamps colors to 256 inside tmux unless told that tmux passes truecolor (terminal-features below)
@@ -75,9 +77,9 @@ in
       set -g status-left-length 40
       set -g status-right "#[fg=${bBg},bg=${cBg}]${sepRight}#[fg=${bFg},bg=${bBg}] #(${branch} '#{pane_current_path}')%m/%d #[fg=${aBg},bg=${bBg}]${sepRight}#[fg=${aFg},bg=${aBg}] %H:%M "
       set -g status-right-length 80
-      set -g window-status-separator "#[fg=${thinSepFg}]${g "e0b1"}"
-      set -g window-status-format " #[fg=${indexFg}]#I #[fg=${cFg}]#W#{?@workmux_status, #{@workmux_status},} "
-      set -g window-status-current-format "#[fg=${cBg},bg=${bBg}]${sepLeft}#[fg=${bFg}] ${window} #[fg=${bBg},bg=${cBg}]${sepLeft}"
+      set -g window-status-separator " "
+      set -g window-status-format "${window "#1f3546" indexFg "#b5cacd"}"
+      set -g window-status-current-format "${window "#2b5580" "#e6f0ff" "#ffffff"}"
 
       # Names for windows that workmux does not name: Claude Code's conversation title (its process is named after
       # its version, and the title is the host name until a conversation starts), the folder for shells, else the command
