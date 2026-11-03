@@ -21,3 +21,5 @@ keybind = super+d=new_split:right
 keybind = chain=equalize_splits
 keybind = super+shift+d=new_split:down
 keybind = chain=equalize_splits
+# The default cmd+v is missing from the menu, so it does nothing in the search bar (ghostty-org/ghostty#10749)
+keybind = super+v=paste_from_clipboard
