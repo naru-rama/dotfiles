@@ -77,7 +77,7 @@ in
       set -g status-position bottom
       set -g status-interval 5
       set -g status-style "fg=${cFg},bg=${cBg}"
-      set -g status-left "#[fg=${aFg},bg=${aBg}] #S #[fg=${aBg},bg=${cBg}]${sepLeft} "
+      set -g status-left "#[fg=${aFg},bg=${aBg}] #h:#S #[fg=${aBg},bg=${cBg}]${sepLeft} "
       set -g status-left-length 40
       set -g status-right "#[fg=${bBg},bg=${cBg}]${sepRight}#[fg=${bFg},bg=${bBg}] #(${branch} '#{pane_current_path}')%m/%d #[fg=${aBg},bg=${bBg}]${sepRight}#[fg=${aFg},bg=${aBg}] %H:%M "
       set -g status-right-length 80

@@ -95,6 +95,7 @@ in
         "$os"
         # Modules that import this one add their own env_var.<NAME>
         "$env_var"
+        "$hostname"
         "$directory"
         "$git_branch"
         "$git_status"
@@ -113,6 +114,12 @@ in
       ];
 
       fill.symbol = " ";
+
+      hostname = {
+        ssh_only = true;
+        style = "bold fg:214 bg:${bg}";
+        format = "${sepLeft}[ $ssh_symbol$hostname ]($style)";
+      };
 
       os = {
         disabled = false;
