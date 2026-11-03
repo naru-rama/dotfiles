@@ -183,6 +183,8 @@
       AppleShowAllExtensions = true;
       KeyRepeat = 2;
       InitialKeyRepeat = 15;
+      "com.apple.mouse.tapBehavior" = 1;
+      "com.apple.trackpad.scaling" = 1.0;
     };
     "com.apple.dock" = {
       autohide = true;
@@ -195,5 +197,20 @@
       DSDontWriteNetworkStores = true;
       DSDontWriteUSBStores = true;
     };
+    "com.apple.AppleMultitouchTrackpad" = {
+      Clicking = true;
+    };
+    "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
+      Clicking = true;
+    };
+    "com.apple.menuextra.clock" = {
+      ShowSeconds = true;
+    };
+  };
+
+  targets.darwin.currentHostDefaults."com.apple.controlcenter" = {
+    BatteryShowPercentage = true;
+    Bluetooth = 18;
+    Sound = 18;
   };
 }
