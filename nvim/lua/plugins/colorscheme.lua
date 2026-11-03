@@ -7,8 +7,7 @@ return {
       style = "vivid",
       -- brighter than the default 0.3 for more contrast; Ghostty's foreground matches the resulting Normal fg
       vivid_brightness = 0.5,
-      -- show Ghostty's translucent background
-      transparent = true,
+      transparent = false,
       on_highlights = function(hl)
         -- the default is light text on a light background, which is hard to read in the completion menu
         hl.PmenuSel = { bg = "#13505f", bold = true }
