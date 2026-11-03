@@ -92,6 +92,7 @@ and `wr name` (`workmux remove`).
 | `prefix Tab` | Toggle between the two most recent agents |
 | `prefix Ctrl+S` | Dashboard in a popup (status, diffs, input to agents) |
 | `prefix Ctrl+T` | Toggle the sidebar |
+| `prefix e` | Pick a file mentioned in the pane (only the changed ones, if any) and open it in Neovim, in a popup over that pane |
 
 - Window names show the agent status (🤖 working, 💬 waiting, ✅ done) through Claude Code hooks.
   The first `workmux add` offers to install the hooks and skills into `~/.claude`: answer `n` if your Claude Code

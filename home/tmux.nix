@@ -15,6 +15,8 @@ let
   cBg = "#0b1522";
   indexFg = "#91c4ff";
 
+  openFile = pkgs.writeShellScript "tmux-open-file" (builtins.readFile ./tmux-open-file.sh);
+
   branch = pkgs.writeShellScript "tmux-branch" ''
     branch=$(${pkgs.git}/bin/git -C "$1" branch --show-current 2>/dev/null)
     [ -n "$branch" ] && printf '${g "e0a0"} %s ${g "e0b3"} ' "$branch"
@@ -64,6 +66,8 @@ in
       bind -r > swap-window -d -t +1
 
       bind t display-popup -E -d "#{pane_current_path}" -w 80% -h 70%
+      # display-popup does not expand formats in its command, but run-shell does. The popup covers the current pane; -y is its bottom edge
+      bind e run-shell -b "tmux display-popup -c '#{client_name}' -E -d '#{pane_current_path}' -w #{pane_width} -h #{pane_height} -x #{pane_left} -y #{e|+:#{pane_top},#{pane_height}} '${openFile} #{pane_id}'"
 
       bind L run-shell "workmux last-done"
       bind Tab run-shell "workmux last-agent"
