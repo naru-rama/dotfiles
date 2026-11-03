@@ -10,10 +10,8 @@ window-padding-y = 8
 cursor-style = block
 cursor-style-blink = true
 
-font-family = PlemolJP Console NF
-# PlemolJP lacks the check box and cross symbols, and other fallback fonts overflow the cell
-font-codepoint-map = U+2610-U+2612,U+2717-U+2718=Menlo
-font-size = 14
+font-codepoint-map = U+3000-U+30FF,U+31F0-U+31FF,U+3400-U+4DBF,U+4E00-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=Hiragino Kaku Gothic ProN
+font-size = 13
 
 # tmux and others break when the ssh host doesn't know xterm-ghostty (falls back to TERM=xterm-256color if sending fails)
 shell-integration-features = ssh-env,ssh-terminfo
